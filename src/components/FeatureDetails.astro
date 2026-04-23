@@ -1,18 +1,29 @@
 ---
+import { Image } from 'astro:assets';
+import drawImage from '../assets/screenshots/draw.png';
+import scoreImage from '../assets/screenshots/score.png';
+import pdfImage from '../assets/screenshots/pdf.png';
+
 const details = [
   {
     title: '直感的な組み合わせ作成',
     description: '参加者を登録したら、競技形式を選んでワンクリックでドロー表を自動生成。シード選手の配置や、ブロック分けも簡単に設定できます。',
+    image: drawImage,
+    alt: '組み合わせ作成画面のスクリーンショット',
     reversed: false,
   },
   {
     title: 'リアルタイムなスコア管理',
     description: '21点制・3ゲームマッチに対応したスコア入力画面。試合の進行状況をリアルタイムで把握でき、次の試合の準備もスムーズに行えます。',
+    image: scoreImage,
+    alt: 'スコア管理画面のスクリーンショット',
     reversed: true,
   },
   {
     title: '賞状・スコアシートのPDF出力',
     description: '試合ごとのスコアシートや、入賞者の賞状をPDFで出力。大会当日にその場で印刷して配布できます。',
+    image: pdfImage,
+    alt: 'PDF出力機能のスクリーンショット',
     reversed: false,
   },
 ];
@@ -30,17 +41,14 @@ const details = [
     <div class="mt-16 space-y-20">
       {details.map((detail) => (
         <div class={`flex flex-col items-center gap-10 lg:gap-16 ${detail.reversed ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
-          <!-- Screenshot placeholder -->
+          <!-- Screenshot -->
           <div class="w-full lg:w-1/2">
-            <div class="flex aspect-video items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white">
-              <div class="text-center">
-                <svg class="mx-auto h-12 w-12 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <rect x="2" y="3" width="20" height="14" rx="2" />
-                  <path d="M8 21h8M12 17v4" />
-                </svg>
-                <p class="mt-2 text-sm text-slate-400">スクリーンショット準備中</p>
-              </div>
-            </div>
+            <Image
+              src={detail.image}
+              alt={detail.alt}
+              class="w-full rounded-2xl border border-slate-200 bg-white shadow-lg"
+              loading="lazy"
+            />
           </div>
           <!-- Text -->
           <div class="w-full lg:w-1/2">
