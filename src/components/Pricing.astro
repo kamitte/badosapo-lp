@@ -1,34 +1,39 @@
 ---
-const plans = [
+interface Plan {
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  featuresHeading?: string;
+  features: string[];
+  highlighted: boolean;
+}
+
+const plans: Plan[] = [
   {
     name: '無料プラン',
     price: '¥0',
     period: '',
     description: 'まずはお試しください',
     features: [
-      '大会1つまで作成可能',
-      '全機能を利用可能',
-      'Windows / macOS対応',
-      'アップデート無料',
+      '参加者数10人まで',
+      '組み合わせ作成',
+      'スコアシート印刷',
+      '大会結果・順位表出力',
     ],
-    cta: 'ダウンロード',
-    ctaHref: '#download',
     highlighted: false,
   },
   {
     name: 'プレミアムプラン',
     price: '¥3,000',
     period: '/月',
-    description: '大会を複数運営する方に',
+    description: '大規模な大会を運営する方に',
+    featuresHeading: '無料プランのすべての機能に加えて',
     features: [
-      '大会数無制限',
-      '全機能を利用可能',
-      'Windows / macOS対応',
-      'アップデート無料',
-      '年額プラン: ¥16,000/年（2ヶ月分お得）',
+      '参加者数無制限',
+      '賞状印刷',
+      '年額プラン: ¥16,000/年（¥20,000お得）',
     ],
-    cta: 'お問い合わせ',
-    ctaHref: '/contact',
     highlighted: true,
   },
 ];
@@ -39,7 +44,7 @@ const plans = [
     <div class="text-center">
       <h2 class="text-3xl font-bold text-slate-900 md:text-4xl">料金プラン</h2>
       <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-        まずは無料で全機能をお試しいただけます
+        まずは無料プランからお試しいただけます
       </p>
     </div>
 
@@ -68,7 +73,10 @@ const plans = [
             )}
           </div>
 
-          <ul class="mt-8 space-y-3">
+          {plan.featuresHeading && (
+            <p class="mt-8 text-sm font-semibold text-slate-700">{plan.featuresHeading}</p>
+          )}
+          <ul class={`space-y-3 ${plan.featuresHeading ? 'mt-4' : 'mt-8'}`}>
             {plan.features.map((feature) => (
               <li class="flex items-start gap-3 text-sm text-slate-600">
                 <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -79,19 +87,8 @@ const plans = [
             ))}
           </ul>
 
-          <a
-            href={plan.ctaHref}
-            class={`mt-8 block rounded-lg py-3 text-center text-sm font-semibold transition-colors ${
-              plan.highlighted
-                ? 'bg-primary-600 text-white hover:bg-primary-700'
-                : 'border-2 border-slate-300 text-slate-700 hover:border-slate-400 hover:bg-slate-50'
-            }`}
-          >
-            {plan.cta}
-          </a>
-
           {plan.highlighted && (
-            <p class="mt-3 text-center text-xs text-slate-400">お支払い方法: 銀行振込</p>
+            <p class="mt-8 text-center text-xs text-slate-400">お支払い方法: 銀行振込</p>
           )}
         </div>
       ))}
