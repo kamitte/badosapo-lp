@@ -1,0 +1,40 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+
+const contactEmail = "kamitte5@gmail.com";
+---
+
+<LegalLayout
+  title="お問い合わせ"
+  heading="お問い合わせ"
+  description="バドサポに関するお問い合わせ窓口です。"
+>
+  <p>
+    バドサポに関するご質問、不具合のご報告、取材のご依頼などは、下記メールアドレスまでご連絡ください。
+  </p>
+
+  <h2>メールでのお問い合わせ</h2>
+  <p>
+    <a href={`mailto:${contactEmail}`} class="text-lg font-semibold"
+      >{contactEmail}</a
+    >
+  </p>
+
+  <h3>お問い合わせの際にご記入いただきたい内容</h3>
+  <ul>
+    <li>お名前（またはチーム・団体名）</li>
+    <li>お問い合わせ内容</li>
+    <li>（不具合報告の場合）ご利用OS、バドサポのバージョン、発生状況</li>
+  </ul>
+
+  <h2>ご返信について</h2>
+  <p>
+    個人で運営しているため、ご返信までに数日お時間をいただく場合があります。あらかじめご了承ください。
+  </p>
+
+  <h2>特定商取引法に基づく表示について</h2>
+  <p>
+    事業者情報の詳細は<a href="/legal">特定商取引法に基づく表示</a
+    >をご覧ください。
+  </p>
+</LegalLayout>
